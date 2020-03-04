@@ -26,13 +26,13 @@ pip install colorama
 
 + 运行效果
 
-![图1]()
+![图1](https://github.com/rootklt/JSRat/blob/master/pics/%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4%E5%9B%9E%E6%98%BE.png)
 
-![图2]()
+![图2](https://github.com/rootklt/JSRat/blob/master/pics/%E5%B8%AE%E5%8A%A9.png)
 
-![图3]()
+![图3](https://github.com/rootklt/JSRat/blob/master/pics/%E5%A4%9A%E4%B8%AA%E4%BC%9A%E8%AF%9D.png)
 
-![图4]()
+![图4](https://github.com/rootklt/JSRat/blob/master/pics/%E5%88%87%E6%8D%A2%E4%BC%9A%E8%AF%9D.png)
 
 + 参考
 
